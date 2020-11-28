@@ -6,7 +6,7 @@ $(function() {
 
 function watchForm() {
   $('form').submit(event => {
-    console.log('submit clicked')
+    $("js-dog-image").html("")
     event.preventDefault();
     getDogImages();
   });
@@ -17,12 +17,13 @@ function getDogImages() {
   fetch(`https://dog.ceo/api/breeds/image/random/${submittedValue}`)
   .then(response => response.json())
   .then(responseJson => displayImages(responseJson, submittedValue))
-  .catch(error => console.log('Sorry, there has been a problem. Try again later.'))
+  .catch(error => $("#js-dog-image").html(`<p>Sorry, there has been a problem. Try again later.</p>`))
 }
 
-
 function displayImages(responseJson, submittedValue) {
+  $("#js-dog-image").html("")
   for (let i = 0; i < submittedValue; i++){
-    $('#js-dog-image').append(`<img src="${responseJson.message[i]}" alt="Dog Picture">`)
+    $('#js-dog-image').append(`<img src="${responseJson.message[i]}" class="img-results" alt="Dog Picture">`)
   }
+  $("#results").removeClass("hidden")
 }
