@@ -11,7 +11,11 @@ body {
   margin: 0 auto;
 }
 
-img {
+.img-results {
   width: 150px;
   margin: 5px;
+}
+
+.hidden {
+  display: none;
 }
